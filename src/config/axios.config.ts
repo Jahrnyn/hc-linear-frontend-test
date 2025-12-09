@@ -1,3 +1,4 @@
+// src/config/axios.config.ts
 import axios from "axios";
 
 export const busesAxiosClient = axios.create({
@@ -8,3 +9,5 @@ export const busesAxiosClient = axios.create({
 export const boardAxiosClient = axios.create({
     baseURL: "http://localhost:3002",
 });
+
+

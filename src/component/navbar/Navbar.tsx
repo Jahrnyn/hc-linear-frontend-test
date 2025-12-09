@@ -1,3 +1,4 @@
+// src/component/navbar/Navbar.tsx
 import {useLocation} from "react-router-dom";
 import {Box, Toolbar} from "@mui/material";
 import {Logo, NavBar, NavButton} from "./style/navbar.style";

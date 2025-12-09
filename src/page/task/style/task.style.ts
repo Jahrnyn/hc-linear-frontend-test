@@ -1,47 +1,36 @@
-import {styled} from "@mui/material/styles";
-import {Box, Paper, Typography} from "@mui/material";
+// src/page/task/style/task.style.ts
+import { styled } from "@mui/material/styles";
+import { Typography } from "@mui/material";
+import {
+  PageLayout,
+  HoverSectionCard,
+} from "../../../component/layout/style/layout.style";
 
-export const Page = styled(Box)({
-    minHeight: "100vh",
-    padding: "64px 32px",
-    background: "linear-gradient(145deg, var(--main-color), #062f41 60%)",
-    color: "var(--text-color-light)",
-    display: "flex",
-    flexDirection: "column",
-    gap: "40px",
+// Az egész Task oldal a közös PageLayout stílust használja.
+export const Page = PageLayout;
+
+// Fejléc konténer a cím + alcím számára.
+export const Header = styled("div")({
+  textAlign: "center",
+  marginBottom: "16px",
 });
 
-export const Header = styled(Box)({
-    textAlign: "center",
-    marginBottom: "16px",
-});
+// A feladat-szekciók (kártyák) a hover-es SectionCard komponensre épülnek.
+export const Card = HoverSectionCard;
 
-export const Card = styled(Paper)({
-    padding: "32px",
-    borderRadius: "22px",
-    background: "rgba(255,255,255,0.03)",
-    backdropFilter: "blur(6px)",
-    border: "1px solid rgba(255,255,255,0.08)",
-    boxShadow: "0 8px 24px rgba(0,0,0,0.4)",
-    transition: "0.25s ease",
-    "&:hover": {
-        borderColor: "var(--primary-color)",
-        boxShadow: "0 0 16px rgba(27,226,154,0.35)",
-        transform: "translateY(-3px)",
-    },
-});
-
+// Kártya címsorának tipográfiája.
 export const Title = styled(Typography)({
-    fontWeight: 700,
-    color: "var(--primary-color)",
-    letterSpacing: ".5px",
-    marginBottom: "4px",
+  fontWeight: 700,
+  color: "var(--primary-color)",
+  letterSpacing: ".5px",
+  marginBottom: "4px",
 });
 
+// Alcím stílus a fő cím alatt.
 export const Subtitle = styled(Typography)({
-    color: "var(--text-color-lighter)",
-    marginTop: "8px",
-    fontSize: "1.1rem",
+  color: "var(--text-color-lighter)",
+  marginTop: "8px",
+  fontSize: "1.1rem",
 });
 
 export const CodeBlock = styled("pre")({

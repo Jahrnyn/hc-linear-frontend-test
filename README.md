@@ -1,3 +1,60 @@
+## 1. Busz CRUD – Megvalósítás
+
+**Funkcionális elemek**
+- Buszok listázása táblázatos formában
+- Új busz létrehozása modal ablakban
+- Busz törlése a listából
+- Busz részleteinek megjelenítése és szerkesztése külön oldalon (`/buses/:id`)
+
+**Megoldás kulcspontjai**
+- A buszok adatait TanStack Query (`useQuery`) tölti be.
+- A CRUD műveletek saját Mutation hookokon futnak (`useCreateBusMutation`, `useUpdateBusMutation`, `useDeleteBusMutation`).
+- Minden módosító művelet után query invalidation frissíti a listát.
+- Az űrlapok kontrollált React state-et használnak, TypeScript típusokkal.
+- A modal komponens z-index alapú overlay, külön route nélkül.
+
+## 2. Board – Drag & Drop feladatkezelő
+
+**Funkcionális elemek**
+- Három státusz oszlop: `todo`, `in_progress`, `done`
+- Feladatok áthúzhatók az oszlopok között
+- Státuszváltás backendre mentve (`PATCH /tasks/:id`)
+- Új feladat hozzáadása (title alapján)
+- Feladat törlése a Board felületről
+
+**Megoldás kulcspontjai**
+- A feladatlista TanStack Queryvel töltődik be (`useBoardTasksQuery`).
+- A státusz váltása külön mutációval történik (`useUpdateTaskStatusMutation`).
+- Az oszlopok és kártyák csoportosítása `useMemo` segítségével történik.
+- A drag & drop tiszta HTML5 API-ra épül:
+  - a kártya `draggable`
+  - `onDragStart` → task ID átadása
+  - oszlop `onDragOver` → drop engedése
+  - oszlop `onDrop` → státusz frissítés mutáción keresztül
+- A vizuális felépítés a kapott design rendszerébe illesztve.
+
+**Fejlesztési irányelvek**
+- A business logika 100%-ban hookokba van szervezve, a komponensek tisztán UI-t tartalmaznak.
+- A komponensek nem hívnak közvetlenül API-t, mindig a mutációs hookokat használják.
+- Minden szerkezeti elem (Modal, Table, FormField) dedikált stílusfájlban van.
+- Az állapotváltozások után query invalidation biztosítja a konzisztens cache-t.
+- A Board drag & drop teljesen külső library-mentes, így könnyen karbantartható.
+
+## 3. Projektfelépítés röviden
+
+```
+src/
+ ├ api/              REST API hívások (Axios)
+ ├ hooks/            Query + Mutation hookok
+ ├ types/            TypeScript típusok
+ ├ page/             Külön oldalak (Bus CRUD, Board)
+ ├ component/        Újrafelhasználható UI elemek
+ └ config/           Axios, QueryClient és routing konfigurációk
+```
+
+A struktúra célja, hogy a domain logika tisztán szétváljon az UI-tól, és a módosító/lekérdező műveletek jól izoláltak legyenek.
+-------------------------------------------------------------------------------------------------------------------------------------
+
 # HC Linear – Frontend Tesztfeladat
 
 Ez a projekt egy React + TypeScript + Vite alapú frontend, amely két külön backendhez kapcsolódik.  
