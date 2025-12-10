@@ -52,7 +52,7 @@ src/
  └ config/           Axios, QueryClient és routing konfigurációk
 ```
 
-A struktúra célja, hogy a domain logika tisztán szétváljon az UI-tól, és a módosító/lekérdező műveletek jól izoláltak legyenek.
+-------------------------------------------------------------------------------------------------------------------------------------
 -------------------------------------------------------------------------------------------------------------------------------------
 
 # HC Linear – Frontend Tesztfeladat
